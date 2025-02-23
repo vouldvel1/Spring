@@ -27,6 +27,11 @@ public class InMemoryStudentDAO {
                 equals(email)).findFirst().orElse(null);
     }
 
+    public Student findById(int id) {
+        return STUDENTS.stream().
+                filter(std -> std.getId() == id).findFirst().orElse(null);
+    }
+
     public Student updateStudent(Student student) {
 
         var studentIndex = IntStream.range(0, STUDENTS.size()).
@@ -41,8 +46,8 @@ public class InMemoryStudentDAO {
 
     }
 
-    public void deleteStudent(String email) {
-        var student = findByEmail(email);
+    public void deleteStudent(int id) {
+        var student = findById(id);
 
         if (student != null) STUDENTS.remove(student);
 

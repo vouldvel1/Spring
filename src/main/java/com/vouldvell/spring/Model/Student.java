@@ -2,10 +2,12 @@ package com.vouldvell.spring.Model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 
 public class Student {
 
+    private int id;
     private String FirstName;
     private String LastName;
     private LocalDate dateOfBirth;
@@ -13,10 +15,16 @@ public class Student {
     private int age;
 
     public Student(String firstName, String lastName, LocalDate dateOfBirth, String email) {
+        id = new Random().nextInt(0, 5000000);
+
         FirstName = firstName;
         LastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {

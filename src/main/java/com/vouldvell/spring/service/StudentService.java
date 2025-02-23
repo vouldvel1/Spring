@@ -13,9 +13,12 @@ public interface StudentService {
     /// Поиск по имейлу
     Student findByEmail(String email);
 
+    /// Поиск по индексу
+    Student findByID(int id);
+
     /// Обновить данные
     Student updateStudent(Student student);
 
     /// Удалить студента
-    void deleteStudent(String email);
+    void deleteStudent(int id);
 }

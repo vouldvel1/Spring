@@ -30,13 +30,18 @@ public class studentController {
           return service.findByEmail(email);
      }
 
+     @GetMapping("GetID/{id}")
+     public Student FindByID(@PathVariable("id") int id){
+          return service.findByID(id);
+     }
+
      @PutMapping("UpdateStudent")
      public Student UpdateStudent(@RequestBody Student student){
           return service.updateStudent(student);
      }
 
-     @DeleteMapping("DeleteStudent/{email}")
-     public void DeleteStudent(@PathVariable String email){
-          service.deleteStudent(email);
+     @DeleteMapping("DeleteStudent/{id}")
+     public void DeleteStudent(@PathVariable int id){
+          service.deleteStudent(id);
      }
 }
