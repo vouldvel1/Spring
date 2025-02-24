@@ -8,37 +8,51 @@ import java.util.Random;
 public class Student {
 
     private int id;
-    private String FirstName;
-    private String LastName;
-    private LocalDate dateOfBirth;
-    private String email;
-    private int age;
 
-    public Student(String firstName, String lastName, LocalDate dateOfBirth, String email) {
+    private String login;
+    private String password;
+
+    private String firstName = "FirstName";
+    private String lastName = "LastName";
+
+    private LocalDate dateOfBirth =  LocalDate.now();
+    private String email = "email";
+
+    private int age = 0;
+
+    public Student(String login, String password) {
         id = new Random().nextInt(0, 5000000);
+        this.login = login;
+        this.password = password;
+    }
 
-        FirstName = firstName;
-        LastName = lastName;
+    public void SetInfo(String firstName, String lastName, LocalDate dateOfBirth, String email){
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
     }
-
     public int getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return FirstName;
+    public String getLogin() {
+        return login;
+    }
+    public String getPassword() {
+        return password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-
     public String getEmail() {
         return email;
     }

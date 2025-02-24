@@ -20,14 +20,19 @@ public class InMemoryStudentServiceImpl implements StudentService {
         this.repository = repository;
     }
 
+    @Override
+    public Student CreateAccount(Student student){
+        return repository.CreateAccount(student);
+    }
+
 
     @Override
     public List<Student> FindAllStudents() {
         return repository.FindAllStudents();
     }
     @Override
-    public Student saveStudent(Student student) {
-        return repository.saveStudent(student);
+    public Student SetInfoStudent(String login, String password, Student student) {
+        return repository.SetInfoStudent(login, password, student);
     }
     @Override
     public Student findByEmail(String email) {

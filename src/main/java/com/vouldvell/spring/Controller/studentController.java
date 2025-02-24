@@ -20,9 +20,14 @@ public class studentController {
           return service.FindAllStudents();
      }
 
-     @PostMapping("Save")
-     public Student SaveStudent(@RequestBody Student student){
-          return service.saveStudent(student);
+     @PostMapping("Create")
+     public Student CreateAccount(@RequestBody Student student){
+        return service.CreateAccount(student);
+     }
+
+     @PostMapping("set/{login}:{password}")
+     public Student SetInfoStudent(@PathVariable String login, @PathVariable String password, @RequestBody Student student){
+          return service.SetInfoStudent(login, password, student);
      }
 
      @GetMapping("/{email}")

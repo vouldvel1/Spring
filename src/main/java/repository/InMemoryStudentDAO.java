@@ -2,6 +2,7 @@ package repository;
 
 import com.vouldvell.spring.Model.Student;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,14 @@ public class InMemoryStudentDAO {
         return STUDENTS;
     }
 
-    public Student saveStudent(Student student) {
+    public Student CreateAccount(Student student) {
         STUDENTS.add(student);
+        return student;
+    }
+
+    public Student SetInfoStudent(String login, String password, @RequestBody Student student) {
+        var stud = STUDENTS.stream().filter(x -> x.getLogin().equals(login) && x.getPassword().equals(password)).findFirst().orElse(null);
+        stud.SetInfo(student.getFirstName(), student.getLastName(), student.getDateOfBirth(), student.getEmail());
         return student;
     }
 
