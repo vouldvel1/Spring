@@ -1,29 +1,44 @@
 package com.vouldvell.spring.service;
 
-import com.vouldvell.spring.Model.Student;
+import org.springframework.stereotype.Service;
+import repository.Student;
+import repository.StudentRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
-public interface StudentService {
+@Service
+public class StudentService {
 
-    List<Student> FindAllStudents();
+   private final StudentRepository studentRepository;
 
-    /// Создание аккаунта
-    Student CreateAccount(Student student);
 
-    /// Сохранение студента
-    Student SetInfoStudent(String login, String password, Student student);
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
-    /// Поиск по имейлу
-    Student findByEmail(String email);
+    public List<Student> findAll() {
+       return studentRepository.findAll();
+   }
 
-    /// Поиск по индексу
-    Student findByID(int id);
+    public Student Create(Student student) {
+        var studentsIsEmpty = studentRepository.findByLogin(student.getLogin());
 
-    /// Обновить данные
-    Student updateStudent(Student student);
+        if(studentsIsEmpty.isPresent()) {
+            throw new IllegalArgumentException(student.getLogin() + " already exists");
+        }
 
-    /// Удалить студента
-    void deleteStudent(int id);
+        studentRepository.save(student);
+
+        return student;
+    }
+
+    public void Delete(Long id) {
+        var studentOptional = studentRepository.findById(id);
+
+        if(studentOptional.isEmpty()) {
+            throw new IllegalArgumentException(id + " does not exist");
+        }
+
+        studentRepository.deleteById(id);
+    }
 }
